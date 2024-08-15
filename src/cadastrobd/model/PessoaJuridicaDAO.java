@@ -28,7 +28,7 @@ public class PessoaJuridicaDAO {
 
     // Método para obter uma pessoa física pelo ID
     public PessoaJuridica getPessoa(int id) {
-        String sql = "SELECT * FROM Pessoa JOIN PessoaJuridica ON Pessoa.idPessoa = PessoaJuridica.idPessoa WHERE Pessoa.id = ?";
+        String sql = "SELECT * FROM Pessoa JOIN PessoaJuridica ON Pessoa.idPessoa = PessoaJuridica.idPessoa WHERE Pessoa.idPessoa = ?";
         try (
                 Connection conn = ConectorBD.getConnection();
                 PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -44,9 +44,6 @@ public class PessoaJuridicaDAO {
                 String email = rs.getString("email");
                 String cnpj = rs.getString("cnpj");
                 return new PessoaJuridica(id, nome, logradouro, cidade, estado, telefone, email, cnpj);
-            }
-            while (rs.next()) {
-                
             }
         } catch (SQLException e) { // Catch SQLException specifically first
             e.printStackTrace();
@@ -114,6 +111,7 @@ public class PessoaJuridicaDAO {
                         pstmt2.setString(2, pessoaJuridica.getCnpj());
                         pstmt2.executeUpdate();
                         
+                        System.out.println("Pessoa Jurídica incluída com sucesso.");
                         return lastInsertedId;
                     }
                 } else {
@@ -151,6 +149,8 @@ public class PessoaJuridicaDAO {
                 pstmt2.setString(1, pessoaJuridica.getCnpj());
                 pstmt2.setInt(2, pessoaJuridica.getId());
                 pstmt2.executeUpdate();
+                
+                System.out.println("Dados da pessoa jurídica alterados com sucesso.");
             } 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -172,6 +172,8 @@ public class PessoaJuridicaDAO {
 
             pstmt2.setInt(1, id);
             pstmt2.executeUpdate();
+            
+            System.out.println("Pessoa Jurídica excluída com sucesso.");
         } catch (SQLException e) {
             e.printStackTrace();
         }

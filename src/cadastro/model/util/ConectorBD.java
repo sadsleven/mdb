@@ -19,7 +19,7 @@ public class ConectorBD {
 
     // Método para obter uma conexão com o banco de dados
     public static Connection getConnection() throws SQLException {
-        String url = "jdbc:sqlserver://localhost:1433;databaseName=Loja;trustServerCertificate=true";
+        String url = "jdbc:sqlserver://localhost:1433;databaseName=Loja3;trustServerCertificate=true";
         
         String usuario = "sa";
         String senha = "1234";

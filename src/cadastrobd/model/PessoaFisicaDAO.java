@@ -28,7 +28,7 @@ public class PessoaFisicaDAO {
 
     // Método para obter uma pessoa física pelo ID
     public PessoaFisica getPessoa(int id) {
-        String sql = "SELECT * FROM Pessoa JOIN PessoaFisica ON Pessoa.idPessoa = PessoaFisica.idPessoa WHERE Pessoa.id = ?";
+        String sql = "SELECT * FROM Pessoa JOIN PessoaFisica ON Pessoa.idPessoa = PessoaFisica.idPessoa WHERE Pessoa.idPessoa = ?";
         try (
                 Connection conn = ConectorBD.getConnection();
                 PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -44,9 +44,6 @@ public class PessoaFisicaDAO {
                 String email = rs.getString("email");
                 String cpf = rs.getString("cpf");
                 return new PessoaFisica(id, nome, logradouro, cidade, estado, telefone, email, cpf);
-            }
-            while (rs.next()) {
-                
             }
         } catch (SQLException e) { // Catch SQLException specifically first
             e.printStackTrace();
@@ -114,6 +111,7 @@ public class PessoaFisicaDAO {
                         pstmt2.setString(2, pessoaFisica.getCpf());
                         pstmt2.executeUpdate();
                         
+                        System.out.println("Pessoa Física incluída com sucesso.");
                         return lastInsertedId;
                     }
                 } else {
@@ -151,6 +149,8 @@ public class PessoaFisicaDAO {
                 pstmt2.setString(1, pessoaFisica.getCpf());
                 pstmt2.setInt(2, pessoaFisica.getId());
                 pstmt2.executeUpdate();
+                
+                System.out.println("Dados da pessoa fisica alterados com sucesso.");
             } 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -172,6 +172,8 @@ public class PessoaFisicaDAO {
 
             pstmt2.setInt(1, id);
             pstmt2.executeUpdate();
+            
+            System.out.println("Pessoa Física excluída com sucesso.");
         } catch (SQLException e) {
             e.printStackTrace();
         }
