@@ -89,18 +89,19 @@ public class CadastroBD {
         System.out.println("Insira os dados...");
         System.out.println("Nome:");
         nome = scanner.next();
+        scanner.nextLine();
         
         System.out.println("Logradouro:");
-        logradouro = scanner.next();
+        logradouro = scanner.nextLine();
         
         System.out.println("Cidade:");
-        cidade = scanner.next();
+        cidade = scanner.nextLine();
         
         boolean isValidInputEstado = false;
         do {
             System.out.println("Estado:");
             estado = scanner.next();
-            
+            scanner.nextLine();
             if (estado.length() > 2) {
                 System.out.println("Entrada inválida! Digite uma abreviação de estado com no máximo 2 caracteres.");
             } else {
@@ -204,6 +205,7 @@ public class CadastroBD {
         }
         
         nome = scanner.next();
+        scanner.nextLine();
         
         if (tipo.equals("J")) {
             System.out.printf("Logradouro (%s):", pessoaJuridica.getLogradouro());
@@ -215,7 +217,7 @@ public class CadastroBD {
             System.out.println("");
         }
 
-        logradouro = scanner.next();
+        logradouro = scanner.nextLine();
         
         if (tipo.equals("J")) {
             System.out.printf("Cidade (%s):", pessoaJuridica.getCidade());
@@ -227,7 +229,7 @@ public class CadastroBD {
             System.out.println("");
         }
         
-        cidade = scanner.next();
+        cidade = scanner.nextLine();
         
         if (tipo.equals("J")) {
             System.out.printf("Estado (%s):", pessoaJuridica.getEstado());
@@ -242,6 +244,7 @@ public class CadastroBD {
         boolean isValidInputEstado = false;
         do {
             estado = scanner.next();
+            scanner.nextLine();
             if (estado.length() > 2) {
                 System.out.println("Entrada inválida! Digite uma abreviação de estado com no máximo 2 caracteres.");
             } else {
